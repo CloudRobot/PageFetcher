@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Request Monitor</title>
+  <style>
+    body {
+      width: 800px;
+      height: 600px;
+      margin: 0;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .status {
+      padding: 4px;
+      border-radius: 4px;
+      color: white;
+    }
+    .pending {
+      background-color: #ff9800;
+    }
+    .completed {
+      background-color: #4caf50;
+    }
+    .failed {
+      background-color: #f44336;
+    }
+    #response-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      padding: 20px;
+      display: none;
+    }
+    .response-content {
+      background: white;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      max-height: 80vh;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Network Requests</h1>
+  <div style="margin-bottom: 10px;">
+    <label for="type-filter">Filter by Type:</label>
+    <select id="type-filter">
+      <option value="all">All</option>
+      <option value="XHR">XHR</option>
+      <option value="Fetch">Fetch</option>
+      <option value="Document">Document</option>
+      <option value="Stylesheet">Stylesheet</option>
+      <option value="Script">Script</option>
+      <option value="Image">Image</option>
+      <option value="Font">Font</option>
+      <option value="Media">Media</option>
+      <option value="WebSocket">WebSocket</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <table id="requests-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Status</th>
+        <th>Duration</th>
+        <th>Size</th>
+        <th>Response</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <div id="response-viewer">
+    <div class="response-content">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2>Response Body</h2>
+        <button id="close-response-viewer">Close</button>
+      </div>
+      <pre id="response-content"></pre>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
